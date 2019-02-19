@@ -4,16 +4,19 @@
 ### Build client
 
 $ cd client
+
 $ yarn examples:build && yarn build
 
 ### Build server
 
 $ cd server
+
 $ gradle build
 
 ### Run Jetty
 
 $ cd server
+
 $ gradle jettyRun
 
 ![img1](https://github.com/patrickneubauer/sprotty-experiment/raw/master/img/img1.png)
