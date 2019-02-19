@@ -1,0 +1,59 @@
+Workflow GhTopSearchWorkflow {
+	
+	package "org.eclipse.scava.crossflow.examples.github.topsearch"
+	
+	configuration isMasterAlsoWorker Configuration {
+		numberOfWorkers 3
+		rootPackageName "org.eclipse.scava.crossflow.examples.github.topsearch"
+		projectName "org.eclipse.scava.crossflow.examples.github.topsearch"
+	}
+	
+	streams {
+		Queue GhTopSearchRepos {
+			type OwnerRepoTuple
+		},
+		Queue GhTopSearchClonedRepoEntries {
+			type OwnerRepoUrlTuple
+		}
+	}
+	
+	tasks {
+		masterOnly CsvSource GhTopSearchCsvSource {
+			path "in/input.csv"
+			output (GhTopSearchRepos)
+		},
+		Task GhTopSearchRepoCloner {
+			input (GhTopSearchRepos)
+			output (GhTopSearchClonedRepoEntries)
+		}
+		
+	}
+	
+	types {
+		isMany Type OwnerRepoTuple {
+			fields {
+				Field field0 {
+					type String
+				},
+				Field field1 {
+					type String
+				}
+			}
+		},
+		isMany Type OwnerRepoUrlTuple {
+			fields {
+				Field field0 {
+					type String
+				},
+				Field field1 {
+					type String
+				},
+				Field field2 {
+					type String
+				}
+			}
+		}
+	}
+
+	
+}

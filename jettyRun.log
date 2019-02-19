@@ -1,0 +1,107 @@
+ClientWorkMachine:server blizzfire$ gradle jettyRun
+
+> Task :xtext-diagram-examples:org.eclipse.scava.crossflow.language.xtext.web:jettyRun
+[main] INFO org.eclipse.jetty.util.log - Logging initialized @1364ms to org.eclipse.jetty.util.log.Slf4jLog
+[main] INFO org.eclipse.jetty.server.Server - jetty-9.4.2.v20170220
+[main] INFO org.eclipse.jetty.annotations.AnnotationConfiguration - Scanning elapsed time=605ms
+[main] INFO org.eclipse.jetty.webapp.StandardDescriptorProcessor - NO JSP Support for /, did not find org.eclipse.jetty.jsp.JettyJspServlet
+[main] INFO org.eclipse.jetty.server.session - DefaultSessionIdManager workerName=node0
+[main] INFO org.eclipse.jetty.server.session - No SessionScavenger set, using defaults
+[main] INFO org.eclipse.jetty.server.session - Scavenging every 660000ms
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@235f4c10{/,[file:///Users/blizzfire/REPOS/CROSSMINER-REPOS/sprotty-experiment/server/xtext-diagram-examples/org.eclipse.scava.crossflow.language.xtext.web/src/main/webapp/, jar:file:///Users/blizzfire/.gradle/caches/modules-2/files-2.1/org.webjars/jquery/2.2.4/c3dc40b1b5f24c56afa36fd9a463bb9f378ac4ab/jquery-2.2.4.jar!/META-INF/resources, jar:file:///Users/blizzfire/.gradle/caches/modules-2/files-2.1/org.webjars/requirejs/2.3.2/f70d2efec834af46229ffd92231acc18fa7856a/requirejs-2.3.2.jar!/META-INF/resources, jar:file:///Users/blizzfire/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext.web/2.13.0/6e67a8753005429ad53e345427db52745ee261b8/org.eclipse.xtext.web-2.13.0.jar!/META-INF/resources, jar:file:///Users/blizzfire/.gradle/caches/modules-2/files-2.1/org.webjars/ace/1.2.3/c027fca9e205f9f4a6b154a725cf41dbeff21a89/ace-1.2.3.jar!/META-INF/resources, jar:file:///Users/blizzfire/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap/3.3.7/d6aeba80236573ed585baa657dac2b951caa8e7e/bootstrap-3.3.7.jar!/META-INF/resources],AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@585811a4{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+[main] INFO org.eclipse.jetty.server.Server - Started @2434ms
+[main] INFO org.eclipse.scava.crossflow.language.xtext.web.CrossflowServerLauncher - Server started http://0.0.0.0:8080/...
+[Thread-27] INFO org.eclipse.scava.crossflow.language.xtext.web.CrossflowServerLauncher - Press enter to stop the server...
+0    [qtp743648472-17] INFO  e.xtext.web.CrossflowServerLauncher  - Opened connection [0:0:0:0:0:0:0:1:8080->0:0:0:0:0:0:0:1:50221]
+177  [qtp743648472-41] INFO  e.xtext.web.CrossflowServerLauncher  - CLIENT: ActionMessage [
+  clientId = "34d2a254.crossflow_crossflow"
+  action = RequestModelAction [
+    kind = "requestModel"
+    options = {resourceId=34d2a254.crossflow, needsClientLayout=false}
+  ]
+]
+DefaultDiagramServer.doSubmitModel with newRoot = 
+SModelRoot [
+  revision = 0
+  type = "NONE"
+  id = "ROOT"
+]
+183  [qtp743648472-41] INFO  e.xtext.web.CrossflowServerLauncher  - SERVER: ActionMessage [
+  clientId = "34d2a254.crossflow_crossflow"
+  action = SetModelAction [
+    kind = "setModel"
+    newRoot = SModelRoot [
+      revision = 0
+      type = "NONE"
+      id = "ROOT"
+    ]
+  ]
+]
+CrossflowUpdateListener.modelSubmitted with newRoot = 
+SModelRoot [
+  revision = 0
+  type = "NONE"
+  id = "ROOT"
+]
+DefaultDiagramServer.doSubmitModel with newRoot = 
+Crossflow [
+  revision = 1
+  type = "crossflow"
+  id = "crossflow"
+  children = ArrayList (
+    TaskNode [
+      name = "GhTopSearchCsvSource"
+      type = "task"
+      id = "task_GhTopSearchCsvSource"
+    ],
+    TaskNode [
+      name = "GhTopSearchRepoCloner"
+      type = "task"
+      id = "task_GhTopSearchRepoCloner"
+    ]
+  )
+]
+CrossflowUpdateListener.modelSubmitted with newRoot = 
+Crossflow [
+  position = Point [
+    x = 0.0
+    y = 0.0
+  ]
+  size = Dimension [
+    width = 64.0
+    height = 124.0
+  ]
+  revision = 1
+  type = "crossflow"
+  id = "crossflow"
+  children = ArrayList (
+    TaskNode [
+      name = "GhTopSearchCsvSource"
+      position = Point [
+        x = 12.0
+        y = 12.0
+      ]
+      size = Dimension [
+        width = 40.0
+        height = 40.0
+      ]
+      type = "task"
+      id = "task_GhTopSearchCsvSource"
+    ],
+    TaskNode [
+      name = "GhTopSearchRepoCloner"
+      position = Point [
+        x = 12.0
+        y = 72.0
+      ]
+      size = Dimension [
+        width = 40.0
+        height = 40.0
+      ]
+      type = "task"
+      id = "task_GhTopSearchRepoCloner"
+    ]
+  )
+]
+

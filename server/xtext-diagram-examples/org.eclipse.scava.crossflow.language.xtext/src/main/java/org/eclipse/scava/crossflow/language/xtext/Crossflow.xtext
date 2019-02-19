@@ -1,0 +1,153 @@
+/*
+ * Copyright (C) 2017 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+grammar org.eclipse.scava.crossflow.language.xtext.Crossflow with org.eclipse.xtext.common.Terminals
+
+generate crossflow "http://www.eclipse.org/scava/crossflow/language/xtext/Crossflow"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Workflow returns Workflow:
+	'Workflow'
+	name=EString
+	'{'
+		('package' package=EString)?
+		'configuration' configuration=Configuration
+		('streams' '{' streams+=Stream ( "," streams+=Stream)* '}' )?
+		('tasks' '{' tasks+=Task ( "," tasks+=Task)* '}' )?
+		('types' '{' types+=Type ( "," types+=Type)* '}' )?
+		('parameters' '{' parameters+=Field ( "," parameters+=Field)* '}' )?
+	'}';
+
+
+Stream returns Stream:
+	Topic | Queue;
+
+Task returns Task:
+	Task_Impl | Source_Impl | CsvSource | Sink_Impl | CsvSink;
+
+
+
+Configuration returns Configuration:
+	(isMasterAlsoWorker?='isMasterAlsoWorker')?
+	'Configuration'
+	'{'
+		('numberOfWorkers' numberOfWorkers=EIntegerObject)?
+		'rootPackageName' rootPackageName=EString
+		'projectName' projectName=EString
+	'}';
+
+EString returns ecore::EString:
+	STRING | ID;
+
+Task_Impl returns Task:
+	{Task}
+	(masterOnly?='masterOnly')?
+	(parallel?='parallel')?
+	(cached?='cached')?
+	'Task'
+	name=EString
+	'{'
+		('input' '(' input+=[Stream|EString] ( "," input+=[Stream|EString])* ')' )?
+		('output' '(' output+=[Stream|EString] ( "," output+=[Stream|EString])* ')' )?
+	'}';
+
+Type returns Type:
+	isMany?='isMany'
+	'Type'
+	name=EString
+	'{'
+		('impl' impl=EString)?
+		('extending' '(' extending+=[Type|EString] ( "," extending+=[Type|EString])* ')' )?
+		('fields' '{' fields+=Field ( "," fields+=Field)* '}' )?
+	'}';
+
+Field returns Field:
+	{Field}
+	(many?='many')?
+	'Field'
+	name=EString
+	'{'
+		('type' type=EString)?
+	'}';
+
+EIntegerObject returns ecore::EIntegerObject:
+	'-'? INT;
+
+EBooleanObject returns ecore::EBooleanObject:
+	'true' | 'false';
+
+Topic returns Topic:
+	{Topic}
+	'Topic'
+	name=EString
+	'{'
+		('type' type=[Type|EString])?
+		('inputOf' '(' inputOf+=[Task|EString] ( "," inputOf+=[Task|EString])* ')' )?
+		('outputOf' '(' outputOf+=[Task|EString] ( "," outputOf+=[Task|EString])* ')' )?
+	'}';
+
+Queue returns Queue:
+	{Queue}
+	'Queue'
+	name=EString
+	'{'
+		('type' type=[Type|EString])?
+		('inputOf' '(' inputOf+=[Task|EString] ( "," inputOf+=[Task|EString])* ')' )?
+		('outputOf' '(' outputOf+=[Task|EString] ( "," outputOf+=[Task|EString])* ')' )?
+	'}';
+
+Source_Impl returns Source:
+	{Source}
+	(masterOnly?='masterOnly')?
+	(parallel?='parallel')?
+	(cached?='cached')?
+	'Source'
+	name=EString
+	'{'
+		('input' '(' input+=[Stream|EString] ( "," input+=[Stream|EString])* ')' )?
+		('output' '(' output+=[Stream|EString] ( "," output+=[Stream|EString])* ')' )?
+	'}';
+
+CsvSource returns CsvSource:
+	{CsvSource}
+	(masterOnly?='masterOnly')?
+	(parallel?='parallel')?
+	(cached?='cached')?
+	'CsvSource'
+	name=EString
+	'{'
+		('path' path=EString)?
+		('input' '(' input+=[Stream|EString] ( "," input+=[Stream|EString])* ')' )?
+		('output' '(' output+=[Stream|EString] ( "," output+=[Stream|EString])* ')' )?
+	'}';
+
+Sink_Impl returns Sink:
+	{Sink}
+	(masterOnly?='masterOnly')?
+	(parallel?='parallel')?
+	(cached?='cached')?
+	'Sink'
+	name=EString
+	'{'
+		('input' '(' input+=[Stream|EString] ( "," input+=[Stream|EString])* ')' )?
+		('output' '(' output+=[Stream|EString] ( "," output+=[Stream|EString])* ')' )?
+	'}';
+
+CsvSink returns CsvSink:
+	{CsvSink}
+	(masterOnly?='masterOnly')?
+	(parallel?='parallel')?
+	(cached?='cached')?
+	'CsvSink'
+	name=EString
+	'{'
+		('path' path=EString)?
+		('input' '(' input+=[Stream|EString] ( "," input+=[Stream|EString])* ')' )?
+		('output' '(' output+=[Stream|EString] ( "," output+=[Stream|EString])* ')' )?
+	'}';
+
+EBoolean returns ecore::EBoolean:
+	'true' | 'false';
