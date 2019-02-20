@@ -5,7 +5,11 @@
 
 $ cd client
 
+$ npm unlink webpack
+
 $ yarn examples:build && yarn build
+
+Note: if asked about the installation of webpack during Yarn build, type ``webpack-cli``
 
 ### Build server
 
@@ -39,7 +43,7 @@ The above screenshot shows an error related to a resource that could not be foun
 
 ------
 
-## Background on Crossflow 
+## Background on Crossflow
 
 ### Metamodel
 
@@ -48,4 +52,3 @@ The above screenshot shows an error related to a resource that could not be foun
 ### Exemplary model
 
 ![img5](https://github.com/patrickneubauer/sprotty-experiment/raw/master/img/img5.png)
-
